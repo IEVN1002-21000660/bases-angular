@@ -10,4 +10,14 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'basesAngular';
+  doblenumero(x:number):number{
+    return x*2;
+  }
+  alumno={
+    nombre: 'Juan',
+    edad: 25,
+    curso: 'Angular',
+    fechaInscrito:new Date(),
+    pago:2220
+  }
 }
