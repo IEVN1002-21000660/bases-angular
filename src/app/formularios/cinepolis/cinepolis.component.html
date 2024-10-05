@@ -1,0 +1,55 @@
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="form-container text-center">
+            <h1>Cinépolis</h1>
+            <form (ngSubmit)="procesarFormulario()" #form="ngForm">
+                <fieldset>
+                    <legend>Entradas</legend>
+                    <div class="form-group">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre" [(ngModel)]="nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cantidad_compradores">Cantidad Compradores:</label>
+                        <input type="number" class="form-control" id="cantidad_compradores" name="cantidad_compradores" [(ngModel)]="cantidad_compradores" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Tarjeta Cineco:</label><br>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" id="si" name="tarjeta_cineco" value="si" [(ngModel)]="tarjeta_cineco" required>
+                            <label class="form-check-label" for="si">Sí</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" id="no" name="tarjeta_cineco" value="no" [(ngModel)]="tarjeta_cineco" required>
+                            <label class="form-check-label" for="no">No</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="cantidad_boletas">Cantidad De Boletas:</label>
+                        <input type="number" class="form-control" id="cantidad_boletas" name="cantidad_boletas" [(ngModel)]="cantidad_boletas" required>
+                    </div>
+                </fieldset>
+                <div class="actions">
+                    <button type="submit" class="btn btn-danger" [disabled]="!form.valid">Procesar</button>
+                    <button type="reset" class="btn btn-secondary" (click)="resetForm()">Salir</button>
+                </div>
+            </form>
+
+            <!-- Sección de salida de datos -->
+            <fieldset *ngIf="total_a_pagar || descuento_aplicado">
+                <legend>Salidas</legend>
+                <div class="form-group">
+                    <label for="valorPagar">Valor a Pagar:</label>
+                    <input type="text" class="form-control" id="valorPagar" [value]="total_a_pagar | currency:'USD'" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="descuento">Descuento Aplicado:</label>
+                    <input type="text" class="form-control" id="descuento" [value]="descuento_aplicado | currency:'USD'" disabled>
+                </div>
+                <div *ngIf="error" class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>
